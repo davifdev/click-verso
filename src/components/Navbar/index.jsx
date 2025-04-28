@@ -18,12 +18,6 @@ export const Navbar = () => {
             Inicio
           </NavLink>
           <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? styles.active : "")}
-          >
-            Sobre
-          </NavLink>
-          <NavLink
             to="/login"
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
@@ -34,6 +28,12 @@ export const Navbar = () => {
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Cadastrar-se
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            Sobre
           </NavLink>
         </ul>
       </nav>

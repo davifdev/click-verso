@@ -1,9 +1,9 @@
 .header {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
   padding: 1.5rem 1rem;
-  border-bottom: 1px solid #3D444D;
-  background-color: #151b22;
+  background-color: var(--background-header);
 }
 
 .navbar ul {
@@ -16,9 +16,9 @@
 }
 
 .navbar a:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .active {
-  border-bottom: 3px solid #F0F6FC;
+  border-bottom: 3px solid var(--primary-font);
 }
