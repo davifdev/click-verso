@@ -10,7 +10,7 @@ export const FormComponent = ({ title, isLogin, btnName }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { createUser, error, loading } = useAuth();
+  const { createUser, login, error, loading } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +21,12 @@ export const FormComponent = ({ title, isLogin, btnName }) => {
       password,
     };
 
-    {
-      !isLogin && (await createUser(objCreateUser));
-    }
+    const objLogin = {
+      email,
+      password,
+    };
+
+    isLogin ? await login(objLogin) : await createUser(objCreateUser);
   };
 
   return (

@@ -36,5 +36,5 @@
 }
 
 .active {
-  border-bottom: 1px solid var(--primary-font);
+  border-bottom:2px solid var(--primary-font);
 }

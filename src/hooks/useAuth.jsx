@@ -6,6 +6,7 @@ import {
   getAuth,
   updateProfile,
   signOut,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 export const useAuth = () => {
@@ -41,15 +42,29 @@ export const useAuth = () => {
     }
   };
 
-
   const logout = async () => {
     checkCleanUp();
     await signOut(auth);
-  }
+  };
+
+  const login = async (data) => {
+    checkCleanUp();
+
+    setLoading(true);
+    setError(false);
+
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     return () => setCleanUp(true);
   }, []);
 
-  return { createUser, auth, loading, error, logout };
+  return { createUser, auth, loading, error, logout, login };
 };

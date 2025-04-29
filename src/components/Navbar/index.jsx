@@ -46,13 +46,13 @@ export const Navbar = () => {
                 to="/login"
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
-                Entrar
+                Login
               </NavLink>
               <NavLink
                 to="/register"
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
-                Cadastrar-se
+                Cadastrar
               </NavLink>
             </>
           )}
