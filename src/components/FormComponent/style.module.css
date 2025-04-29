@@ -1,0 +1,89 @@
+.s_register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5rem;
+}
+
+.form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.form h2 {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form strong {
+  margin-bottom: 5px;
+}
+
+.form input {
+  background-color: var(--background-header);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.7rem;
+  color: var(--primary-font);
+}
+
+.form button {
+  background-color: var(--color-green);
+  color: var(--primary-font);
+  padding: .7rem;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.form button:hover {
+  background-color: #45a049;
+}
+
+.form button[disabled] {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--color-green);
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  outline: none;
+}
+
+.createCount {
+  text-align: center;
+}
+
+.createCount a {
+  color: var(--color-blue);
+}
+
+.error_message {
+  text-align: center;
+  padding: .3rem;
+  border-radius: 5px;
+  color: var(--error);;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
