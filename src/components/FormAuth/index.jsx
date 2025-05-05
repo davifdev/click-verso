@@ -4,16 +4,21 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
-export const FormComponent = ({ title, isLogin, btnName }) => {
+export const FormAuth = ({ title, isLogin, btnName }) => {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { createUser, login, error, loading } = useAuth();
-
+  console.log(error);
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // if (password !== confirmPassword) {
+    //   error = "As senhas precisam ser iguais";
+    //   return;
+    // }
 
     const objCreateUser = {
       displayName,
@@ -38,6 +43,7 @@ export const FormComponent = ({ title, isLogin, btnName }) => {
           <input
             type="text"
             name="displayName"
+            placeholder="Digite seu nome"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
           />
@@ -48,6 +54,7 @@ export const FormComponent = ({ title, isLogin, btnName }) => {
         <input
           type="email"
           name="email"
+          placeholder="Digite seu e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -57,6 +64,7 @@ export const FormComponent = ({ title, isLogin, btnName }) => {
         <input
           type="password"
           name="password"
+          placeholder="Sua senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -67,6 +75,7 @@ export const FormComponent = ({ title, isLogin, btnName }) => {
           <input
             type="password"
             name="confirmPassword"
+            placeholder="Confirmar senha"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
@@ -87,6 +96,7 @@ export const FormComponent = ({ title, isLogin, btnName }) => {
 
       {!loading && <button type="submit">{btnName}</button>}
       {error && <p className={styles.error_message}>{error}</p>}
+    
     </form>
   );
 };

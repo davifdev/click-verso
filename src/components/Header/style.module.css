@@ -24,14 +24,14 @@
   opacity: 0.8;
 }
 
-.navbar .logout {
+.navbar .icon {
   background-color: var(--background);
   padding: .2rem;
   border-radius: 5px;
   opacity: .8;
 
 }
-.navbar .logout:hover {
+.navbar .icon:hover {
   opacity: 1;
 }
 

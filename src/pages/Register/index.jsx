@@ -1,11 +1,11 @@
 import styles from "./style.module.css";
 
-import { FormComponent } from "../../components/FormComponent";
+import { FormAuth } from "../../components/FormAuth";
 
 export const Register = () => {
   return (
     <section className={styles.s_register}>
-      <FormComponent title="Cadastro" btnName="Cadastrar" />
+      <FormAuth title="Cadastro" btnName="Cadastrar" />
     </section>
   );
 };

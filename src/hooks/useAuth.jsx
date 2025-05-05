@@ -36,8 +36,15 @@ export const useAuth = () => {
 
       setLoading(false);
     } catch (error) {
-      console.log(error.message);
+      let errorMsg;
 
+      if (error.message.includes("email-already")) {
+        errorMsg = "E-mail já cadastrado";
+      } else if (error.message.includes("Password")) {
+        errorMsg = "As senhas devem ter pelo menos 6 caracteres";
+      }
+
+      setError(errorMsg);
       setLoading(false);
     }
   };
@@ -58,7 +65,6 @@ export const useAuth = () => {
       setLoading(false);
     } catch (error) {
       console.log(error.message);
-      setLoading(false);
     }
   };
 

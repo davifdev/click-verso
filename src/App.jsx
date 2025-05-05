@@ -3,12 +3,11 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Components
-import { Navbar } from "./components/Navbar";
+import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 
 // Pages
 import { Home } from "./pages/Home";
-import { About } from "./pages/About";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Dashboard } from "./pages/Dashboard";
@@ -33,7 +32,7 @@ function App() {
   return (
     <AuthContextProvider value={{ user }}>
       <BrowserRouter>
-        <Navbar />
+        <Header />
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -45,7 +44,6 @@ function App() {
               path="/dashboard"
               element={user ? <Dashboard /> : <Navigate to="/login" />}
             />
-            <Route path="/about" element={<About />} />
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}

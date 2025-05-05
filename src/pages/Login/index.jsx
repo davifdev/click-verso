@@ -1,11 +1,11 @@
 import styles from "./style.module.css";
 
-import { FormComponent } from "../../components/FormComponent";
+import { FormAuth } from "../../components/FormAuth";
 
 export const Login = () => {
   return (
     <section className={styles.s_login}>
-      <FormComponent isLogin={true} title="Login" btnName="Entrar" />
+      <FormAuth isLogin={true} title="Login" btnName="Entrar" />
     </section>
   );
 };
