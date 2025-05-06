@@ -14,11 +14,14 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <NavLink to="/" className={styles.logo}>
-        Tech<strong>Blog</strong>
+        <h1>
+          Tech<strong>Blog</strong>
+        </h1>
       </NavLink>
 
       <nav className={styles.navbar}>
         <ul>
+           <LinkComponent path="" name="Inicio" />
           {user && <LinkComponent path="post/create" name="Criar" />}
           {user && <LinkComponent path="dashboard" name="Dashboard" />}
           {!user && <LinkComponent path="login" name="Login" />}

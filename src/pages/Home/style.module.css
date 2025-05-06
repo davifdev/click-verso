@@ -1,0 +1,32 @@
+.s_home {
+  padding: 5rem 2rem;
+}
+
+.search {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.search input {
+  width: 350px;
+  background-color: var(--background-header);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.7rem;
+  color: var(--primary-font);
+}
+
+.search button {
+  background-color: var(--background-header);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.7rem;
+  color: var(--primary-font);
+}
+
+.postsContainer {
+  padding: 3rem 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}

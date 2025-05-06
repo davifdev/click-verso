@@ -13,6 +13,7 @@ export const FormCreateAndEdit = () => {
   const [image, setImage] = useState("");
   const [tags, setTags] = useState("");
   const [error, setError] = useState("");
+  const [description, setDescription] = useState("");
 
   const textareaRef = useRef();
   const { insertPost } = useInsertPost("posts");
@@ -64,6 +65,7 @@ export const FormCreateAndEdit = () => {
       body,
       image,
       tagsArray,
+      description,
       uid: user.uid,
       createdBy: user.displayName,
     };
@@ -112,6 +114,16 @@ export const FormCreateAndEdit = () => {
               ref={textareaRef}
             ></textarea>
 
+            <label>
+              <strong>Descrição</strong>
+              <input
+                type="text"
+                name="tags"
+                placeholder="Escreva uma descrição para o seu post"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </label>
             <label>
               <strong>Tags</strong>
               <input
