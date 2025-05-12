@@ -54,10 +54,8 @@ export const FormCreateAndEdit = () => {
       return;
     }
 
-    const tagsArray = tags.split(", ").map((tag) => tag.trim().toLowerCase());
-
-    console.log(tagsArray);
-
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
+    
     if (error) return;
 
     const objConfig = {
@@ -108,7 +106,7 @@ export const FormCreateAndEdit = () => {
 
             <textarea
               className={styles.textarea}
-              placeholder="Digite seu contéudo"
+              placeholder="Digite seu contéudo em markdown..."
               value={body}
               onChange={(e) => setBody(e.target.value)}
               ref={textareaRef}

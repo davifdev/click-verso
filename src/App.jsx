@@ -12,12 +12,14 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Dashboard } from "./pages/Dashboard";
 import { CreatePost } from "./pages/CreatePost";
+import { PostUnique } from "./components/PostUnique";
 
 // Hooks
 import { AuthContextProvider } from "./context/useAuthContext";
 import { useAuth } from "./hooks/useAuth";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+
 
 function App() {
   const [user, setUser] = useState();
@@ -39,6 +41,10 @@ function App() {
             <Route
               path="/post/create"
               element={user ? <CreatePost /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/post/:id"
+              element={user ? <PostUnique /> : <Navigate to="/login" />}
             />
             <Route
               path="/dashboard"

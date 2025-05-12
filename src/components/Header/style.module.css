@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: var(--background-header);
 }
 
@@ -20,6 +20,11 @@
 .navbar a {
   font-weight: bold;
   height: 22px;
+}
+
+button {
+  font-weight: bold;
+  color: var(--primary-font);
 }
 
 .navbar a:hover {

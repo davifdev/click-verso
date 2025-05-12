@@ -2,7 +2,5 @@
   border-top: 1px solid var(--border-color);
   color: var(--border-color);
   padding: 1.5rem;
-  display: flex;
-    justify-content: flex-end;
-
+  text-align: center;
 }

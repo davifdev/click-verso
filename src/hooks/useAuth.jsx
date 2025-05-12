@@ -42,6 +42,8 @@ export const useAuth = () => {
         errorMsg = "E-mail já cadastrado";
       } else if (error.message.includes("Password")) {
         errorMsg = "As senhas devem ter pelo menos 6 caracteres";
+      } else {
+        errorMsg = "Ocorreu um erro tente novamente mais tarde";
       }
 
       setError(errorMsg);
@@ -64,7 +66,16 @@ export const useAuth = () => {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       setLoading(false);
     } catch (error) {
-      console.log(error.message);
+      let erroMsg;
+
+      if (error.message.includes("invalid-credential")) {
+        erroMsg = "Email ou senha incorreto";
+      } else {
+        erroMsg = "Ocorreu um erro tente novamente mais tarde";
+      }
+
+      setError(erroMsg);
+      setLoading(false);
     }
   };
 

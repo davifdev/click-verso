@@ -1,24 +1,24 @@
+import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 
-const Post = ({ post }) => {
+const Post = ({ title, tagsArray,description, image, id, createdBy }) => {
   return (
     <div className={styles.post}>
-      <div className={styles.post_img}>
-        <img
-          src="https://i.pinimg.com/736x/95/26/03/95260370b7ddaf8ce55bfd95f42cb0c3.jpg"
-          alt=""
-        />
-      </div>
+      <div
+        className={styles.post_img}
+        style={{ backgroundImage: `url(${image})` }}
+      ></div>
 
       <div className={styles.post_details}>
-        <h2>{post.title}</h2>
-        <p>{post.description}</p>
+        <h2>{title}</h2>
+        <p>Criado por: {createdBy}</p>
 
+        <p>{description}</p>
         <div className={styles.tags}>
-          {/* {post.tagsArray && post.tagsArray.map((tag) => <span>{tag}</span>)} */}
+          {tagsArray && tagsArray.map((tag) => <span>{tag}</span>)}
         </div>
 
-        <button>Ler</button>
+        <Link to={`post/${id}`}>Ler</Link>
       </div>
     </div>
   );

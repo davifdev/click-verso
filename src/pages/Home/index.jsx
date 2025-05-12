@@ -6,8 +6,6 @@ import { useFetchPosts } from "../../hooks/useFetchPosts";
 export const Home = () => {
   const { posts } = useFetchPosts("posts");
 
-  console.log(posts);
-
   return (
     <section className={styles.s_home}>
       <div className={styles.search}>
@@ -16,7 +14,7 @@ export const Home = () => {
       </div>
 
       <div className={styles.postsContainer}>
-        {posts && posts.map((post) => <Post post={post} key={post.id} />)}
+        {posts && posts.map((post) => <Post {...post} key={post.id} />)}
       </div>
     </section>
   );
