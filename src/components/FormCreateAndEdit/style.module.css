@@ -34,6 +34,7 @@
   width: 100%;
   overflow: auto;
   padding: 1rem;
+  padding-bottom: 15rem;
 
   h1 {
     font-size: 3rem;

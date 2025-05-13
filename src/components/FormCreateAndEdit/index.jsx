@@ -4,6 +4,7 @@ import { ToolBar } from "../ToolBar";
 import { useState, useRef } from "react";
 import { useInsertPost } from "../../hooks/useInsertPost";
 import { useAuthValue } from "../../context/useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 import { marked } from "marked";
 
@@ -12,11 +13,12 @@ export const FormCreateAndEdit = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [tags, setTags] = useState("");
-  const [error, setError] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
   const textareaRef = useRef();
-  const { insertPost } = useInsertPost("posts");
+  const { insertPost, response } = useInsertPost("posts");
   const { user } = useAuthValue();
 
   const renderText = () => {
@@ -46,17 +48,16 @@ export const FormCreateAndEdit = () => {
       new URL(image);
     } catch (error) {
       console.log(error.message);
-      setError("A imagem precisa ser uma URL");
+      setErrorMsg("A imagem precisa ser uma URL");
+      return;
     }
 
     if ((!title, !body, !image, !tags)) {
-      setError("Preencha todos os campos!");
+      setErrorMsg("Preencha todos os campos!");
       return;
     }
 
     const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
-    
-    if (error) return;
 
     const objConfig = {
       title,
@@ -68,7 +69,12 @@ export const FormCreateAndEdit = () => {
       createdBy: user.displayName,
     };
 
+    console.log(errorMsg);
+
+    if (errorMsg) return;
     await insertPost(objConfig);
+
+    navigate("/");
   };
 
   return (
@@ -86,6 +92,7 @@ export const FormCreateAndEdit = () => {
                   name="displayName"
                   placeholder="Crie um título"
                   value={title}
+                  required
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </label>
@@ -108,6 +115,7 @@ export const FormCreateAndEdit = () => {
               className={styles.textarea}
               placeholder="Digite seu contéudo em markdown..."
               value={body}
+              required
               onChange={(e) => setBody(e.target.value)}
               ref={textareaRef}
             ></textarea>
@@ -129,11 +137,22 @@ export const FormCreateAndEdit = () => {
                 name="tags"
                 placeholder="Crie tags separadas por vírgula"
                 value={tags}
+                required
                 onChange={(e) => setTags(e.target.value)}
               />
             </label>
 
-            <button type="submit">Criar</button>
+            {errorMsg && <p className={styles.error_message}>{errorMsg}</p>}
+            {response.error && (
+              <p className={styles.error_message}>{response.error}</p>
+            )}
+
+            {response.loading && (
+              <button type="submit" disabled>
+                Aguarde...
+              </button>
+            )}
+            {!response.loading && <button type="submit">Criar</button>}
           </div>
 
           <div

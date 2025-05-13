@@ -9,7 +9,6 @@ import { LinkComponent } from "../LinkComponent";
 export const Header = () => {
   const { user } = useAuthValue();
   const { logout } = useAuth();
-  console.log(user);
 
   return (
     <header className={styles.header}>
@@ -30,7 +29,7 @@ export const Header = () => {
           {user && <LinkComponent path="dashboard" name="Dashboard" />}
           {!user && <LinkComponent path="login" name="Login" />}
           {!user && <LinkComponent path="register" name="Cadastrar" />}
-          <Link onClick={logout}>Sair</Link>
+          {user && <Link onClick={logout}>Sair</Link>}
         </ul>
       </nav>
     </header>

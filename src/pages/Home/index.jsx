@@ -2,16 +2,31 @@ import styles from "./style.module.css";
 
 import Post from "../../components/Post";
 import { useFetchPosts } from "../../hooks/useFetchPosts";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const Home = () => {
   const { posts } = useFetchPosts("posts");
+  const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    navigate(`/search?q=${query}`);
+  };
 
   return (
     <section className={styles.s_home}>
-      <div className={styles.search}>
-        <input type="search" placeholder="Pesquise por tags" />
+      <form className={styles.search} onSubmit={handleSubmit}>
+        <input
+          type="search"
+          placeholder="Pesquise por tags"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
         <button>Pesquisar</button>
-      </div>
+      </form>
 
       <div className={styles.postsContainer}>
         {posts && posts.map((post) => <Post {...post} key={post.id} />)}

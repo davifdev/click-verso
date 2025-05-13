@@ -1,7 +1,7 @@
 import styles from "./style.module.css";
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
 export const FormAuth = ({ title, isLogin, btnName }) => {
@@ -9,16 +9,24 @@ export const FormAuth = ({ title, isLogin, btnName }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const { createUser, login, error: authError, loading } = useAuth();
 
-  const { createUser, login, error, loading } = useAuth();
-  console.log(error);
+  useEffect(() => {
+    if (authError) {
+      setError(authError);
+    }
+  }, [authError]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (password !== confirmPassword) {
-    //   error = "As senhas precisam ser iguais";
-    //   return;
-    // }
+    if (!isLogin) {
+      if (password !== confirmPassword) {
+        setError("As senhas precisam ser iguais");
+        return;
+      }
+    }
 
     const objCreateUser = {
       displayName,
@@ -45,6 +53,7 @@ export const FormAuth = ({ title, isLogin, btnName }) => {
             name="displayName"
             placeholder="Digite seu nome"
             value={displayName}
+            required
             onChange={(e) => setDisplayName(e.target.value)}
           />
         </label>
@@ -56,6 +65,7 @@ export const FormAuth = ({ title, isLogin, btnName }) => {
           name="email"
           placeholder="Digite seu e-mail"
           value={email}
+          required
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
@@ -66,6 +76,7 @@ export const FormAuth = ({ title, isLogin, btnName }) => {
           name="password"
           placeholder="Sua senha"
           value={password}
+          required
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
@@ -77,6 +88,7 @@ export const FormAuth = ({ title, isLogin, btnName }) => {
             name="confirmPassword"
             placeholder="Confirmar senha"
             value={confirmPassword}
+            required
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
@@ -96,7 +108,6 @@ export const FormAuth = ({ title, isLogin, btnName }) => {
 
       {!loading && <button type="submit">{btnName}</button>}
       {error && <p className={styles.error_message}>{error}</p>}
-    
     </form>
   );
 };

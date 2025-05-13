@@ -15,10 +15,10 @@ const Post = ({ title, tagsArray,description, image, id, createdBy }) => {
 
         <p>{description}</p>
         <div className={styles.tags}>
-          {tagsArray && tagsArray.map((tag) => <span>{tag}</span>)}
+          {tagsArray && tagsArray.map((tag, index) => <span key={index}>{tag}</span>)}
         </div>
 
-        <Link to={`post/${id}`}>Ler</Link>
+        <Link to={`/post/${id}`}>Ler</Link>
       </div>
     </div>
   );
