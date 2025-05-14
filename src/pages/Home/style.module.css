@@ -1,4 +1,8 @@
 .s_home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 5rem 2rem;
 }
 
@@ -25,8 +29,25 @@
 }
 
 .postsContainer {
-  padding: 3rem 0;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
+}
+
+.no_posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 5rem;
+}
+
+.createPost {
+  background-color: var(--background-header);
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
 }

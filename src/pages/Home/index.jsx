@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 
 import Post from "../../components/Post";
 import { useFetchPosts } from "../../hooks/useFetchPosts";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export const Home = () => {
@@ -29,6 +29,16 @@ export const Home = () => {
       </form>
 
       <div className={styles.postsContainer}>
+        {posts && posts.length === 0 && (
+          <>
+            <div className={styles.no_posts}>
+              <h3>Nenhuma postagem encontrada...</h3>
+              <Link to="/post/create" className={styles.createPost}>
+                Criar Postagem
+              </Link>
+            </div>
+          </>
+        )}
         {posts && posts.map((post) => <Post {...post} key={post.id} />)}
       </div>
     </section>

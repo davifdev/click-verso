@@ -1,0 +1,33 @@
+
+.dashboardEdit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem;
+}
+
+.btn_settings {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn_settings svg {
+  font-size: 18px;
+  padding: .5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view {
+  background-color: var(--background-header);
+}
+
+.edit {
+  background-color: var(--color-green);
+}
+
+.delete {
+  background-color: var(--error);
+}

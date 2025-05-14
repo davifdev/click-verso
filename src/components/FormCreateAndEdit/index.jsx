@@ -1,12 +1,9 @@
 import styles from "./style.module.css";
 
-import { ToolBar } from "../ToolBar";
 import { useState, useRef } from "react";
 import { useInsertPost } from "../../hooks/useInsertPost";
 import { useAuthValue } from "../../context/useAuthContext";
 import { useNavigate } from "react-router-dom";
-
-import { marked } from "marked";
 
 export const FormCreateAndEdit = () => {
   const [body, setBody] = useState("");
@@ -20,26 +17,6 @@ export const FormCreateAndEdit = () => {
   const textareaRef = useRef();
   const { insertPost, response } = useInsertPost("posts");
   const { user } = useAuthValue();
-
-  const renderText = () => {
-    return { __html: marked(body) };
-  };
-
-  const insertText = (before, after) => {
-    const textArea = textareaRef.current;
-    const start = textArea.selectionStart;
-    const end = textArea.selectionEnd;
-    const previousText = textArea.value;
-    const beforeText = previousText.slice(0, start);
-    const selectText = previousText.slice(start, end);
-    const afterText = previousText.slice(end);
-
-    const newText = `${beforeText}${before}${selectText}${after}${afterText}`;
-
-    setBody(newText);
-
-    textArea.focus();
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,6 +36,8 @@ export const FormCreateAndEdit = () => {
 
     const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
+    if (errorMsg) return;
+
     const objConfig = {
       title,
       body,
@@ -69,9 +48,6 @@ export const FormCreateAndEdit = () => {
       createdBy: user.displayName,
     };
 
-    console.log(errorMsg);
-
-    if (errorMsg) return;
     await insertPost(objConfig);
 
     navigate("/");
@@ -81,85 +57,73 @@ export const FormCreateAndEdit = () => {
     <section className={styles.formCreateAndEdit}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2>Criar Postagem</h2>
-
-        <div className={styles.content}>
-          <div className={styles.left}>
-            <div className={styles.title_image}>
-              <label>
-                <strong>Título</strong>
-                <input
-                  type="text"
-                  name="displayName"
-                  placeholder="Crie um título"
-                  value={title}
-                  required
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </label>
-
-              <label>
-                <strong>Imagem</strong>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="URL da imagem"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </label>
-            </div>
-
-            <ToolBar insertText={insertText} />
-
-            <textarea
-              className={styles.textarea}
-              placeholder="Digite seu contéudo em markdown..."
-              value={body}
+        <div className={styles.title_image}>
+          <label>
+            <strong>Título</strong>
+            <input
+              type="text"
+              name="displayName"
+              placeholder="Crie um título"
+              value={title}
               required
-              onChange={(e) => setBody(e.target.value)}
-              ref={textareaRef}
-            ></textarea>
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </label>
 
-            <label>
-              <strong>Descrição</strong>
-              <input
-                type="text"
-                name="tags"
-                placeholder="Escreva uma descrição para o seu post"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </label>
-            <label>
-              <strong>Tags</strong>
-              <input
-                type="text"
-                name="tags"
-                placeholder="Crie tags separadas por vírgula"
-                value={tags}
-                required
-                onChange={(e) => setTags(e.target.value)}
-              />
-            </label>
-
-            {errorMsg && <p className={styles.error_message}>{errorMsg}</p>}
-            {response.error && (
-              <p className={styles.error_message}>{response.error}</p>
-            )}
-
-            {response.loading && (
-              <button type="submit" disabled>
-                Aguarde...
-              </button>
-            )}
-            {!response.loading && <button type="submit">Criar</button>}
-          </div>
-
-          <div
-            className={styles.right}
-            dangerouslySetInnerHTML={renderText()}
-          />
+          <label>
+            <strong>Imagem</strong>
+            <input
+              type="text"
+              name="email"
+              placeholder="URL da imagem"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </label>
         </div>
+
+        <textarea
+          className={styles.textarea}
+          placeholder="Digite seu contéudo..."
+          value={body}
+          required
+          onChange={(e) => setBody(e.target.value)}
+          ref={textareaRef}
+        ></textarea>
+
+        <label>
+          <strong>Descrição</strong>
+          <input
+            type="text"
+            name="tags"
+            placeholder="Escreva uma descrição para o seu post"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </label>
+        <label>
+          <strong>Tags</strong>
+          <input
+            type="text"
+            name="tags"
+            placeholder="Crie tags separadas por vírgula"
+            value={tags}
+            required
+            onChange={(e) => setTags(e.target.value)}
+          />
+        </label>
+
+        {errorMsg && <p className={styles.error_message}>{errorMsg}</p>}
+        {response.error && (
+          <p className={styles.error_message}>{response.error}</p>
+        )}
+
+        {response.loading && (
+          <button type="submit" disabled>
+            Aguarde...
+          </button>
+        )}
+        {!response.loading && <button type="submit">Criar</button>}
       </form>
     </section>
   );

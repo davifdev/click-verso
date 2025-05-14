@@ -1,8 +1,17 @@
 .postContainer {
+  padding-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.postContainer button {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  background-color: var(--background-header);
+  color: var(--primary-font);
 }
 
 .content {
@@ -10,7 +19,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  text-align: start;
+  text-align: center;
   width: 800px;
 }
 

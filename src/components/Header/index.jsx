@@ -14,7 +14,7 @@ export const Header = () => {
     <header className={styles.header}>
       <NavLink to="/" className={styles.logo}>
         <h1>
-          Tech<strong>Blog</strong>
+          Click<strong>Verso</strong>
         </h1>
       </NavLink>
 
