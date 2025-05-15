@@ -71,6 +71,13 @@ textarea:focus {
   outline: none;
 }
 
+.postImage {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .createCount {
   text-align: center;
 }

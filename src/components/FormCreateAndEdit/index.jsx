@@ -1,11 +1,13 @@
 import styles from "./style.module.css";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useInsertPost } from "../../hooks/useInsertPost";
 import { useAuthValue } from "../../context/useAuthContext";
-import { useNavigate } from "react-router-dom";
+import { useFetchPost } from "../../hooks/useFetchPost";
+import { useUpdatePost } from "../../hooks/useUpdatePost";
+import { useNavigate, useParams } from "react-router-dom";
 
-export const FormCreateAndEdit = () => {
+export const FormCreateAndEdit = ({ textTitle, isEdit }) => {
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -13,10 +15,25 @@ export const FormCreateAndEdit = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const textareaRef = useRef();
   const { insertPost, response } = useInsertPost("posts");
   const { user } = useAuthValue();
+  const { post } = useFetchPost("posts", id);
+  const { updateDocument } = useUpdatePost("posts");
+
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title);
+      setBody(post.body);
+      setImage(post.image);
+      setDescription(post.description);
+
+      const textTags = post.tagsArray.join(",");
+      setTags(textTags);
+    }
+  }, [post]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +65,7 @@ export const FormCreateAndEdit = () => {
       createdBy: user.displayName,
     };
 
-    await insertPost(objConfig);
+    isEdit ? await updateDocument(id, objConfig) : await insertPost(objConfig);
 
     navigate("/");
   };
@@ -56,7 +73,7 @@ export const FormCreateAndEdit = () => {
   return (
     <section className={styles.formCreateAndEdit}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h2>Criar Postagem</h2>
+        <h2>{textTitle}</h2>
         <div className={styles.title_image}>
           <label>
             <strong>Título</strong>
@@ -90,6 +107,14 @@ export const FormCreateAndEdit = () => {
           onChange={(e) => setBody(e.target.value)}
           ref={textareaRef}
         ></textarea>
+
+        {isEdit && (
+          <img
+            className={styles.postImage}
+            src={post.image}
+            alt="Imagem do Post"
+          />
+        )}
 
         <label>
           <strong>Descrição</strong>

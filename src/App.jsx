@@ -14,6 +14,7 @@ import { Dashboard } from "./pages/Dashboard";
 import { CreatePost } from "./pages/CreatePost";
 import { PostUnique } from "./components/PostUnique";
 import { Search } from "./pages/Search";
+import { EditPost } from "./pages/EditPost";
 
 // Hooks
 import { AuthContextProvider } from "./context/useAuthContext";
@@ -56,7 +57,7 @@ function App() {
             />
             <Route
               path="/posts/edit/:id"
-              element={user ? <Dashboard /> : <Navigate to="/login" />}
+              element={user ? <EditPost /> : <Navigate to="/login" />}
             />
             <Route
               path="/login"

@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 export const CreatePost = () => {
   return (
     <section className={styles.s_createPost}>
-      <FormCreateAndEdit />
+      <FormCreateAndEdit textTitle="Criar Postagem" />
     </section>
   );
 };
