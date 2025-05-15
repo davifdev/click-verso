@@ -5,7 +5,11 @@ import { faEye, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
+import { useDeletePost } from "../../hooks/useDeletePost";
+
 export const ManagerComponent = ({ id, title }) => {
+  const { deleteDocument } = useDeletePost("posts");
+
   return (
     <div className={styles.dashboardEdit}>
       <strong>{title}</strong>
@@ -16,7 +20,11 @@ export const ManagerComponent = ({ id, title }) => {
         <Link to={`/posts/edit/${id}`}>
           <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} />
         </Link>
-        <FontAwesomeIcon icon={faTrash} className={styles.delete} />
+        <FontAwesomeIcon
+          icon={faTrash}
+          className={styles.delete}
+          onClick={() => deleteDocument(id)}
+        />
       </div>
     </div>
   );
