@@ -1,9 +1,10 @@
 import styles from "./style.module.css";
 
 import Post from "../../components/Post";
-import { useFetchPosts } from "../../hooks/useFetchPosts";
 import { Link, useNavigate } from "react-router-dom";
+
 import { useState } from "react";
+import { useFetchPosts } from "../../hooks/useFetchPosts";
 
 export const Home = () => {
   const { posts } = useFetchPosts("posts");

@@ -1,4 +1,5 @@
 import styles from "./style.module.css";
+
 import { useQuery } from "../../hooks/useQuery";
 import { useFetchPosts } from "../../hooks/useFetchPosts";
 
@@ -10,7 +11,7 @@ export const Search = () => {
   const { posts } = useFetchPosts("posts", search.toLowerCase());
 
   return (
-    <section className={styles.search_container}>
+    <section className={styles.searchContainer}>
       <h2>{search}</h2>
       <div className={styles.posts}>
         {posts &&

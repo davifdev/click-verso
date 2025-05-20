@@ -20,6 +20,7 @@ import { EditPost } from "./pages/EditPost";
 import { AuthContextProvider } from "./context/useAuthContext";
 import { useAuth } from "./hooks/useAuth";
 import { useState, useEffect } from "react";
+
 import { onAuthStateChanged } from "firebase/auth";
 
 function App() {

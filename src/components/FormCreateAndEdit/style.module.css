@@ -13,7 +13,7 @@
   margin: 2rem 5rem;
 }
 
-.title_image {
+.titleImage {
   display: flex;
   gap: 1rem;
 }
@@ -86,7 +86,7 @@ textarea:focus {
   color: var(--color-blue);
 }
 
-.error_message {
+.errorMessage {
   text-align: center;
   padding: 0.3rem;
   border-radius: 5px;

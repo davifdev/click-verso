@@ -107,7 +107,7 @@ export const FormAuth = ({ title, isLogin, btnName }) => {
       )}
 
       {!loading && <button type="submit">{btnName}</button>}
-      {error && <p className={styles.error_message}>{error}</p>}
+      {error && <p className={styles.errorMessage}>{error}</p>}
     </form>
   );
 };

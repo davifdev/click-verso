@@ -3,6 +3,7 @@ import styles from "./style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import { Link } from "react-router-dom";
 
 import { useDeletePost } from "../../hooks/useDeletePost";

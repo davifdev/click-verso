@@ -10,6 +10,14 @@
   font-size: 1.3rem;
 }
 
+.menu {
+  display: none;
+}
+
+.navbarMobileBlock {
+  display: none;
+}
+
 .navbar ul {
   display: flex;
   justify-content: center;
@@ -31,17 +39,52 @@ button {
   opacity: 0.8;
 }
 
-.navbar .icon {
-  background-color: var(--background);
-  padding: .2rem;
-  border-radius: 5px;
-  opacity: .8;
-
-}
-.navbar .icon:hover {
-  opacity: 1;
-}
-
 .active {
-  border-bottom:2px solid var(--primary-font);
+  border-bottom: 3px solid var(--primary-font);
+}
+
+.none {
+  display: none;
+}
+
+@media (max-width: 678px) {
+  .header {
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .menu {
+    display: block;
+    width: 25px;
+    height: 25px;
+  }
+
+  .userName {
+    font-size: .8rem;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .navbarMobileBlock {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding: 1.5rem;
+    background-color: var(--background-header);
+    font-weight: bold;
+    z-index: 1;
+  }
+
+  .navbarMobileBlock ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
 }

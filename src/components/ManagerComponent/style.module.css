@@ -31,3 +31,11 @@
 .delete {
   background-color: var(--error);
 }
+
+
+@media (max-width: 678px) {
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+}

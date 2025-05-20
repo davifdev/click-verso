@@ -1,15 +1,16 @@
-import { Link } from "react-router-dom";
 import styles from "./style.module.css";
+
+import { Link } from "react-router-dom";
 
 const Post = ({ title, tagsArray,description, image, id, createdBy }) => {
   return (
     <div className={styles.post}>
       <div
-        className={styles.post_img}
+        className={styles.postImg}
         style={{ backgroundImage: `url(${image})` }}
       ></div>
 
-      <div className={styles.post_details}>
+      <div className={styles.postDetails}>
         <h2>{title}</h2>
         <p>Criado por: {createdBy}</p>
 

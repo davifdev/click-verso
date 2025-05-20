@@ -10,14 +10,14 @@
   cursor: pointer;
 }
 
-.post_img {
+.postImg {
   width: 100%;
   height: 200px;
   background-position: center;
   background-size: cover;
 }
 
-.post_details {
+.postDetails {
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -27,23 +27,23 @@
   height: 200px;
 }
 
-.post_details h2 {
+.postDetails h2 {
   font-size: 1.2rem;
 }
 
-.post_details p {
+.postDetails p {
   color: var(--border-color);
   text-overflow: ellipsis;
   text-wrap: wrap;
 }
 
-.post_details p:nth-child(2) {
+.postDetails p:nth-child(2) {
   color: var(--primary-font);
   font-weight: bold;
   font-size: 11px;
 }
 
-.post_details a {
+.postDetails a {
   background-color: var(--background);
   text-align: center;
   color: var(--primary-font);

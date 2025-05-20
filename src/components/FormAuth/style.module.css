@@ -63,7 +63,7 @@ textarea:focus {
   color: var(--color-blue);
 }
 
-.error_message {
+.errorMessage {
   text-align: center;
   padding: .3rem;
   border-radius: 5px;

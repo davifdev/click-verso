@@ -1,7 +1,8 @@
 import styles from "./style.module.css";
 
 import { useFetchPost } from "../../hooks/useFetchPost";
-import { useParams, useNavigate, Link } from "react-router-dom";
+
+import { useParams, useNavigate } from "react-router-dom";
 
 export const PostUnique = () => {
   const { id } = useParams();

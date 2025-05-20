@@ -1,11 +1,12 @@
 import styles from "./style.module.css";
 
 import { useState, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { useInsertPost } from "../../hooks/useInsertPost";
 import { useAuthValue } from "../../context/useAuthContext";
 import { useFetchPost } from "../../hooks/useFetchPost";
 import { useUpdatePost } from "../../hooks/useUpdatePost";
-import { useNavigate, useParams } from "react-router-dom";
 
 export const FormCreateAndEdit = ({ textTitle, isEdit }) => {
   const [body, setBody] = useState("");
@@ -14,10 +15,11 @@ export const FormCreateAndEdit = ({ textTitle, isEdit }) => {
   const [tags, setTags] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [description, setDescription] = useState("");
+
   const navigate = useNavigate();
   const { id } = useParams();
-
   const textareaRef = useRef();
+  
   const { insertPost, response } = useInsertPost("posts");
   const { user } = useAuthValue();
   const { post } = useFetchPost("posts", id);
@@ -74,7 +76,7 @@ export const FormCreateAndEdit = ({ textTitle, isEdit }) => {
     <section className={styles.formCreateAndEdit}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2>{textTitle}</h2>
-        <div className={styles.title_image}>
+        <div className={styles.titleImage}>
           <label>
             <strong>Título</strong>
             <input
@@ -126,6 +128,7 @@ export const FormCreateAndEdit = ({ textTitle, isEdit }) => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
+        
         <label>
           <strong>Tags</strong>
           <input
@@ -138,7 +141,7 @@ export const FormCreateAndEdit = ({ textTitle, isEdit }) => {
           />
         </label>
 
-        {errorMsg && <p className={styles.error_message}>{errorMsg}</p>}
+        {errorMsg && <p className={styles.errorMessage}>{errorMsg}</p>}
         {response.error && (
           <p className={styles.error_message}>{response.error}</p>
         )}
